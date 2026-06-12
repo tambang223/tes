@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">   4
+<!DOCTYPE html>      5
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -420,6 +420,14 @@ reader.readAsDataURL(file);
 });
 
 function simpanPNG(){
+
+const shio = document.getElementById("shioImage");
+
+console.log("SHIO SIZE:");
+console.log(shio.getBoundingClientRect());
+
+console.log("SHIO SRC:");
+console.log(shio.src);
 
 html2canvas(
 document.querySelector(".poster"),
