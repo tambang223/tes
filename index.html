@@ -103,7 +103,7 @@ font-size:60px;
 
 /* TOP 2D */
 #top2d{
-top:735px;
+top:732px;
 left:110px;
 width:450px;
 font-size:56px;
@@ -194,6 +194,14 @@ placeholder="Nama Pasaran">
 GENERATE BBFS
 </button>
 
+<button onclick="generatePagi()">
+PAGI
+</button>
+
+<button onclick="generateMalam()">
+MALAM
+</button>
+
 <button onclick="simpanPNG()">
 SIMPAN PNG
 </button>
@@ -242,6 +250,68 @@ SHIO MONYET
 
 <script>
 
+const PASARAN_MALAM = [
+"KENTUCKY MID",
+"ROMA",
+"FLORIDA MID",
+"MONACO",
+"NEWYORK MID",
+"TURIN",
+"ITALY",
+"CAROLINA DAY",
+"CUBA",
+"FRANCE",
+"MADRID",
+"OREGON 03",
+"BULGARIA",
+"HUNGARY",
+"MIAMI",
+"OREGON 06",
+"CALIFORNIA",
+"FLORIDA EVE",
+"OREGON 09",
+"NEWYORK EVE",
+"KENTUCKY EVE"
+];
+
+const PASARAN_PAGI = [
+"CAROLINA EVE",
+"ECUADOR",
+"AUSTRIA",
+"CAMBODIA",
+"FOSHAN",
+"OREGON 12",
+"CHILE",
+"LAOS",
+"BULLSEYE",
+"TTM 4D P1",
+"SYDNEY",
+"CHENGDU",
+"GUANGDONG",
+"TTM 5D P1",
+"CHINA",
+"CHONGQING",
+"TTM 4D P2",
+"PHILIPPINES",
+"KINGKONG P1",
+"JAPAN",
+"KOWLOON",
+"SINGAPORE",
+"JEJU LOTTO",
+"TOTO BEIJING",
+"TTM 4D P3",
+"TOTO FUZHOU",
+"CYPRUS",
+"TAIWAN",
+"TAICHUNG",
+"MEXICO",
+"TTM 5D P2",
+"ICELAND",
+"OSLO",
+"TTM 4D P4"
+];
+
+let bbfsTerpakai = new Set();
 const shioData={
 KUDA:["01","13","25","37","49","61","73","85","97"],
 ULAR:["02","14","26","38","50","62","74","86","98"],
@@ -268,6 +338,8 @@ return "-";
 
 function generateUnique5Digit(){
 
+while(true){
+
 let arr=[];
 
 while(arr.length<5){
@@ -280,7 +352,18 @@ arr.push(n);
 
 }
 
-return arr.join('');
+let hasil = arr.join('');
+
+if(!bbfsTerpakai.has(hasil)){
+
+bbfsTerpakai.add(hasil);
+
+return hasil;
+
+}
+
+}
+
 }
 
 function formatTanggal(tanggal){
@@ -308,21 +391,30 @@ d.getFullYear();
 
 }
 
-function generate(){
+function generate(namaPasaran=null){
 
 let bbfs=generateUnique5Digit();
 
-let pasaran=
+let pasaran;
+
+if(namaPasaran){
+
+pasaran = namaPasaran;
+
+}else{
+
+pasaran=
 document.getElementById("pasaranInput").value;
 
 if(pasaran==""){
 pasaran="MEXICO";
 }
 
+}
+
 document.getElementById("pasaranText")
 .innerHTML=
 pasaran.toUpperCase();
-
 
 let tanggal=
 document.getElementById("tanggalInput").value;
@@ -442,11 +534,80 @@ html2canvas(document.querySelector(".poster"),{
 
 }
 
+async function generateFolder(listNama,namaZip){
+
+bbfsTerpakai.clear();
+
+const zip = new JSZip();
+
+for(let nama of listNama){
+
+generate(nama);
+
+await new Promise(r=>setTimeout(r,100));
+
+const canvas = await html2canvas(
+document.querySelector(".poster"),
+{
+scale:1,
+useCORS:true,
+backgroundColor:null
+});
+
+const base64 =
+canvas.toDataURL("image/png")
+.split(",")[1];
+
+zip.file(
+nama + ".png",
+base64,
+{base64:true}
+);
+
+}
+
+const content =
+await zip.generateAsync({
+type:"blob"
+});
+
+const link =
+document.createElement("a");
+
+link.href =
+URL.createObjectURL(content);
+
+link.download =
+namaZip + ".zip";
+
+link.click();
+
+}
+
+function generatePagi(){
+
+generateFolder(
+PASARAN_PAGI,
+"PAGI"
+);
+
+}
+
+function generateMalam(){
+
+generateFolder(
+PASARAN_MALAM,
+"MALAM"
+);
+
+}
+
 generate();
 
 </script>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </body>
 </html>
