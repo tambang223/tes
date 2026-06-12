@@ -155,11 +155,8 @@ color:#ffd700;
     top:650px;
     left:590px;
 
-    width:370px !important;
-    height:370px !important;
-
-    max-width:370px;
-    max-height:370px;
+    width:370px;
+    height:370px;
 
     object-fit:contain;
 
@@ -231,9 +228,7 @@ MEXICO
 
 <img
 id="shioImage"
-src="img/shio/monyet.png"
-width="370"
-height="370">
+src="img/shio/monyet.png">
 
 <div class="data" id="shio">
 MONYET
@@ -426,17 +421,26 @@ reader.readAsDataURL(file);
 
 function simpanPNG(){
 
+const shio = document.getElementById("shioImage");
+
+shio.style.width = "370px";
+shio.style.height = "370px";
+
 html2canvas(
-document.querySelector(".poster")
+document.querySelector(".poster"),
+{
+    scale:1,
+    useCORS:true
+}
 ).then(canvas=>{
 
-let link=
+let link =
 document.createElement("a");
 
-link.download=
+link.download =
 "SYAIR-PRABU.png";
 
-link.href=
+link.href =
 canvas.toDataURL("image/png");
 
 link.click();
