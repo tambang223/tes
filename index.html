@@ -1,4 +1,4 @@
-<!DOCTYPE html>      5
+<!DOCTYPE html>     6
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -421,20 +421,12 @@ reader.readAsDataURL(file);
 
 function simpanPNG(){
 
-const shio = document.getElementById("shioImage");
-
-console.log("SHIO SIZE:");
-console.log(shio.getBoundingClientRect());
-
-console.log("SHIO SRC:");
-console.log(shio.src);
-
 html2canvas(
 document.querySelector(".poster"),
 {
     useCORS:true,
     allowTaint:true,
-    scale:1
+    scale:2
 }
 ).then(canvas=>{
 
