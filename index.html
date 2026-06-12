@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="id">   2
+<!DOCTYPE html>    3
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -423,24 +423,20 @@ function simpanPNG(){
 
 const shio = document.getElementById("shioImage");
 
-shio.style.width = "370px";
-shio.style.height = "370px";
+console.log("SHIO SIZE:");
+console.log(shio.getBoundingClientRect());
 
 html2canvas(
-document.querySelector(".poster"),
-{
-    scale:1,
-    useCORS:true
-}
+document.querySelector(".poster")
 ).then(canvas=>{
 
-let link =
+let link=
 document.createElement("a");
 
-link.download =
+link.download=
 "SYAIR-PRABU.png";
 
-link.href =
+link.href=
 canvas.toDataURL("image/png");
 
 link.click();
