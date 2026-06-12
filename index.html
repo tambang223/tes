@@ -1,5 +1,5 @@
-<!DOCTYPE html>    3
-<html lang="id">
+<!DOCTYPE html>
+<html lang="id">   3
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -421,23 +421,20 @@ reader.readAsDataURL(file);
 
 function simpanPNG(){
 
-const shio = document.getElementById("shioImage");
-
-console.log("SHIO SIZE:");
-console.log(shio.getBoundingClientRect());
-
 html2canvas(
-document.querySelector(".poster")
+document.querySelector(".poster"),
+{
+    useCORS:true,
+    allowTaint:true,
+    scale:1
+}
 ).then(canvas=>{
 
-let link=
-document.createElement("a");
+let link=document.createElement("a");
 
-link.download=
-"SYAIR-PRABU.png";
+link.download="SYAIR-PRABU.png";
 
-link.href=
-canvas.toDataURL("image/png");
+link.href=canvas.toDataURL("image/png");
 
 link.click();
 
