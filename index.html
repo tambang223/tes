@@ -1,4 +1,4 @@
-<!DOCTYPE html>     6
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -31,6 +31,8 @@ width:1080px;
 height:1080px;
 margin:auto;
 overflow:hidden;
+
+transform:none !important;
 }
 
 #templateImg{
@@ -421,22 +423,18 @@ reader.readAsDataURL(file);
 
 function simpanPNG(){
 
-html2canvas(
-document.querySelector(".poster"),
-{
+html2canvas(document.querySelector(".poster"),{
+    scale:1,
     useCORS:true,
-    allowTaint:true,
-    scale:2
-}
-).then(canvas=>{
+    backgroundColor:null
+}).then(canvas=>{
 
-let link=document.createElement("a");
+    let link=document.createElement("a");
 
-link.download="SYAIR-PRABU.png";
+    link.download="SYAIR-PRABU.png";
+    link.href=canvas.toDataURL("image/png");
 
-link.href=canvas.toDataURL("image/png");
-
-link.click();
+    link.click();
 
 });
 
