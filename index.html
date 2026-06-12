@@ -1,4 +1,4 @@
-<!DOCTYPE html>   7
+<!DOCTYPE html>       kontol
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -6,13 +6,17 @@
 
 <title>SYAIR PRABU GENERATOR</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Amaranth',sans-serif;
 }
 
 body{
@@ -56,51 +60,51 @@ text-shadow:
 /* BBFS */
 #bbfs{
 top:280px;
-left:100px;
+left:138px;
 width:360px;
 font-size:82px;
 }
 
 /* HOKI */
 #hoki{
-top:235px;
-left:675px;
+top:280px;
+left:670px;
 width:220px;
 font-size:80px;
 }
 
 /* COLOK BEBAS */
 #bebas{
-top:450px;
-left:340px;
-font-size:64px;
+top:465px;
+left:360px;
+font-size:70px;
 }
 
 /* COLOK MACAU */
 #macau{
 top:548px;
-left:285px;
-font-size:62px;
+left:323px;
+font-size:70px;
 }
 
 /* KEPALA */
 #kepala{
-top:438px;
+top:460px;
 left:780px;
 font-size:60px;
 }
 
 /* EKOR */
 #ekor{
-top:545px;
-left:780px;
+top:550px;
+left:747px;
 font-size:60px;
 }
 
 /* TOP 2D */
 #top2d{
-top:760px;
-left:155px;
+top:735px;
+left:110px;
 width:450px;
 font-size:56px;
 line-height:1.1;
@@ -109,26 +113,26 @@ line-height:1.1;
 /* TOP 3D */
 #top3d{
 top:925px;
-left:140px;
-width:500px;
-font-size:38px;
+left:105px;
+width:450px;
+font-size:45px;
 }
 
 /* SHIO */
 #shio{
-top:955px;
-left:645px;
+top:936px;
+left:630px;
 width:280px;
-font-size:34px;
+font-size:40px;
 }
 
 /* PASARAN */
 #pasaranText{
 
-top:120px;
+top:145px;
 left:0;
 
-width:100%;
+width:102%;
 
 text-align:center;
 
@@ -141,8 +145,8 @@ color:#ffd700;
 /* TANGGAL */
 #tanggalText{
 
-top:470px;
-left:650px;
+top:410px;
+left:600px;
 
 width:350px;
 
@@ -154,7 +158,7 @@ color:#ffd700;
 
 #shioImage{
     position:absolute;
-    top:650px;
+    top:740px;
     left:590px;
 
     width:370px;
@@ -231,7 +235,7 @@ id="shioImage"
 src="img/shio/monyet.png">
 
 <div class="data" id="shio">
-MONYET
+SHIO MONYET
 </div>
 
 </div>
@@ -373,7 +377,7 @@ D+E+A;
 let namaShio = getShio(B+D);
 
 document.getElementById("shio").innerHTML =
-namaShio;
+"SHIO " + namaShio;
 
 const gambarShio={
 
